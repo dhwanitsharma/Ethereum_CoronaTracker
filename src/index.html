@@ -29,16 +29,47 @@
       form {
         width: 350px;
         margin-bottom: 10px;
+        margin-right:50px;
       }
 
       ul {
         margin-bottom: 0px;
       }
+      
+      label {
+      display: inline-block;
+      width: 140px;
+      text-align: right;
+      }​
 
       #completedTaskList .content {
         color: grey;
         text-decoration: line-through;
       }
+      .button1 {
+      margin-left : 170px;} 
+
+      .buttonHeader {
+      margin-top : 100px;
+      border-radius: 4px;
+      background-color: #000000;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 20px;
+      padding: 20px;
+      width: 300px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;}
+
+      .row  {
+        margin-top: 50px;
+      }
+
+      
+      
+      
     </style>
   </head>
   <body>
@@ -52,11 +83,43 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <main role="main" class="col-lg-12 d-flex justify-content-center">
-          <div id="loader" class="text-center">
-            <p class="text-center">Loading...</p>
-          </div>
-          <div id="content">
+        <div class="col-sm-6e" >
+        <button onclick="App.ShowCreate()" class="buttonHeader">Create New Check-in</button>
+      </div>
+      <div class="col-sm-6e" >
+        <button onclick="App.ShowCheckins()" class="buttonHeader">Get Check-ins</button> 
+      </div>
+    </div>
+
+      
+      <div class="row-2">
+        <main role="main" class="col-lg-12 d-flex justify-content-center">   
+          <div class="col-sm-6">
+          <div id="content" style="display: flex">
+            <div id="CreatCheckin" style="display: none">
+              <form onSubmit="App.createCheckin(); return false;">
+              <label for="AadharNo">Aadhar number:</label>
+              <input id="AadharNo" type="number" required> <br>
+              <label for="Name">Name:</label>
+              <input id="Name" type="text"  required> <br>
+              <label for="Address">Address:</label>
+              <input id="Address" type="text"  required> <br>
+              <label for="StateOfSec">State Of Sector:</label>
+              <input id="StateOfSec" type="text" required> <br>
+              <label for="Temp">Temperature:</label>
+              <input id="Temp" type="text"  required> <br>
+              <label for="Sector">Sector:</label>
+              <input id="Sector" type="text"  required> <br>
+              <input class="button1" type="submit" value="CreateCheckin">
+              </form>
+            </div>
+            </div>
+            <div id="DisplayCheckin" >
+              <form onSubmit="App.renderCheckins(); return false;">
+                <label for="AadharId">Enter Aadhar No:</label>
+                <input id="AadharId" type="text"  required> <br>
+                <input class="button1" type="submit" value="Get Check-ins">
+                </form>
               <ul id="CheckinList" class="list-unstyled">
                 <div id ="CheckinTemplates" class="CheckinTemplate" style="display: none">
                   <li>
@@ -65,8 +128,10 @@
                 </div>
               </ul>
             </div>
+            </div>
+          </div>  
         </main>
-      </div>
+     <!---- </div>-->
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

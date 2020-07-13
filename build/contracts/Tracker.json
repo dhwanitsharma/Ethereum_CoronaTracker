@@ -7505,10 +7505,16 @@
       "links": {},
       "address": "0x0D5d5063A58d8ECAD5DB2991486344Ac4712BFf1",
       "transactionHash": "0xbf0a22716e5e3328198cdc2e3eb96c89c4540420333bcd50250178f1bef4abf8"
+    },
+    "1594672382124": {
+      "events": {},
+      "links": {},
+      "address": "0xb149a70bf97Ab9F388110975bbBb56efcb6d50f2",
+      "transactionHash": "0x60ff6d65a120e1f65ec0679638af243ce7202d9e127e26da6fb0c63c930279ba"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2020-07-12T19:23:38.625Z",
+  "updatedAt": "2020-07-13T20:35:54.408Z",
   "devdoc": {
     "methods": {}
   },

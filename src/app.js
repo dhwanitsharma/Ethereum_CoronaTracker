@@ -8,8 +8,6 @@ App= {
     await App.loadAccount()
     await App.loadContract()
     await App.render()
-    console.log("Test 1")
-    await App.renderCheckins()
   },
 
   loadWeb3: async () => {
@@ -84,8 +82,10 @@ App= {
   },
   
   renderCheckins: async () =>{
-    const Identification = await App.tracker.getAadharInfo(123456)
     const $CheckinTemplate = $('.CheckinTemplate')
+    const AadharNo = $('#AadharId').val()
+
+    const Identification = await App.tracker.getAadharInfo(AadharNo)
 
     for(var i = 0; i<Identification.length;i++){
         var index = Identification[i].toNumber()
@@ -117,16 +117,44 @@ App= {
         $newCheckinTemplate.show()
 
     }
-
-    //await App.tracker.CreateCheckin(123456,"add4","Add1","Yellow","98.6","5")
-
-
-    const test3 = await App.tracker.getCheckinInfo(1)
-    ///console.log(test)
-
-    //console.log(test3)
-    //console.log(Identification)
   },
+
+  createCheckin : async() =>{
+    App.setLoading(true)
+    const AadharNo = $('#AadharNo').val()
+    const Name = $('#Name').val()
+    const Address = $('#Address').val()
+    const StateOfSec = $('#StateOfSec').val()
+    const Temp = $('#Temp').val()
+    const Sector = $('#Sector').val()
+    console.log(AadharNo,Name,Address,StateOfSec,Temp,Sector)
+    await App.tracker.CreateCheckin(AadharNo,Name,Address,StateOfSec,Temp,Sector)
+    window.location.reload()
+  },
+  ShowCreate() {
+    var createCheck = document.getElementById("CreatCheckin");
+    var displayCheck = document.getElementById("DisplayCheckin");
+    if(displayCheck.style.display !=="none"){
+      displayCheck.style.display ="none"
+    }
+    if (createCheck.style.display === "none") {
+      createCheck.style.display = "block";
+    } else {
+      createCheck.style.display = "none";
+    }
+  },
+  ShowCheckins() {
+    var createCheck = document.getElementById("CreatCheckin");
+    var displayCheck = document.getElementById("DisplayCheckin");
+    if(createCheck.style.display !=="none"){
+      createCheck.style.display ="none"
+    }
+    if (displayCheck.style.display === "none") {
+      displayCheck.style.display = "block";
+    } else {
+      displayCheck.style.display = "none";
+    }
+  }
 
 }
 
