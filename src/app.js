@@ -2,8 +2,6 @@ App= {
   loading:false,
   contracts:{},
   load: async () => {
-
-    console.log("app loading..")
     await App.loadWeb3()   
     await App.loadAccount()
     await App.loadContract()
@@ -50,8 +48,6 @@ App= {
     const tracker = await $.getJSON('Tracker.json')
     App.contracts.Tracker = TruffleContract(tracker)
     App.contracts.Tracker.setProvider(App.web3Provider) 
-    console.log(tracker)
-
     // Hydrate the smart contract with values from the blockchain
     App.tracker = await App.contracts.Tracker.deployed()
   },
@@ -82,15 +78,21 @@ App= {
   },
   
   renderCheckins: async () =>{
+    if (App.loading) {
+      return
+    }
     const $CheckinTemplate = $('.CheckinTemplate')
     const AadharNo = $('#AadharId').val()
+    var btn = $("#submitbtn");
+    btn.attr("disabled", "disabled");
+
 
     const Identification = await App.tracker.getAadharInfo(AadharNo)
 
-    for(var i = 0; i<Identification.length;i++){
+    for(var i = Identification.length-1; i>=0;i--){
+        
         var index = Identification[i].toNumber()
       
-        console.log(Identification[i].toNumber())
         const checkinfo = await App.tracker.getCheckinInfo(index)
         const aadharNo = checkinfo[0].toNumber()
         const name = checkinfo[1]
@@ -103,6 +105,15 @@ App= {
        document.getElementById("CheckinTemplates").style.border = "thin solid #000000";
        document.getElementById("CheckinTemplates").style.marginTop = "5px";
        document.getElementById("Checkin").style.marginRight = "500px";
+       if(stateOfSector==="Red"){
+        document.getElementById("CheckinTemplates").style.backgroundColor = "#DC143C";
+       }
+       if(stateOfSector==="Yellow"){
+        document.getElementById("CheckinTemplates").style.backgroundColor = "#F0E68C";
+       }
+       if(stateOfSector==="Green"){
+        document.getElementById("CheckinTemplates").style.backgroundColor = "#ADFF2F";
+       }
         const $newCheckinTemplate = $CheckinTemplate.clone()
         $newCheckinTemplate.find('.Checkindata').html
         ("Aadhar Number- " + aadharNo+"<br />"+
@@ -127,7 +138,6 @@ App= {
     const StateOfSec = $('#StateOfSec').val()
     const Temp = $('#Temp').val()
     const Sector = $('#Sector').val()
-    console.log(AadharNo,Name,Address,StateOfSec,Temp,Sector)
     await App.tracker.CreateCheckin(AadharNo,Name,Address,StateOfSec,Temp,Sector)
     window.location.reload()
   },
@@ -144,6 +154,7 @@ App= {
     }
   },
   ShowCheckins() {
+    window.location.reload()
     var createCheck = document.getElementById("CreatCheckin");
     var displayCheck = document.getElementById("DisplayCheckin");
     if(createCheck.style.display !=="none"){

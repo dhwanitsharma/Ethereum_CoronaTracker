@@ -16,7 +16,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       main {
         margin-top: 60px;
@@ -47,7 +47,17 @@
         text-decoration: line-through;
       }
       .button1 {
-      margin-left : 170px;} 
+      margin-left : 170px;
+      background-color: #000000;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      } 
+      .button1:disabled {
+      background:#808080;
+      }
 
       .buttonHeader {
       margin-top : 100px;
@@ -65,11 +75,7 @@
 
       .row  {
         margin-top: 50px;
-      }
-
-      
-      
-      
+      }     
     </style>
   </head>
   <body>
@@ -83,10 +89,10 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-6e" >
+        <div class="col-sm-4" >
         <button onclick="App.ShowCreate()" class="buttonHeader">Create New Check-in</button>
       </div>
-      <div class="col-sm-6e" >
+      <div class="col-sm-6" >
         <button onclick="App.ShowCheckins()" class="buttonHeader">Get Check-ins</button> 
       </div>
     </div>
@@ -105,20 +111,24 @@
               <label for="Address">Address:</label>
               <input id="Address" type="text"  required> <br>
               <label for="StateOfSec">State Of Sector:</label>
-              <input id="StateOfSec" type="text" required> <br>
+              <select name="StateOfSec" id="StateOfSec">
+                <option value="Red">Red</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Green">Green</option>
+              </select>    
               <label for="Temp">Temperature:</label>
               <input id="Temp" type="text"  required> <br>
               <label for="Sector">Sector:</label>
               <input id="Sector" type="text"  required> <br>
-              <input class="button1" type="submit" value="CreateCheckin">
+              <input class="button1" type="submit" value="Create Check-In">
               </form>
             </div>
             </div>
-            <div id="DisplayCheckin" >
-              <form onSubmit="App.renderCheckins(); return false;">
+            <div id="DisplayCheckin">
+              <form onSubmit="App.renderCheckins(); return false ;">
                 <label for="AadharId">Enter Aadhar No:</label>
                 <input id="AadharId" type="text"  required> <br>
-                <input class="button1" type="submit" value="Get Check-ins">
+                <input id="submitbtn"class="button1" type="submit" value="Get Check-Ins ">
                 </form>
               <ul id="CheckinList" class="list-unstyled">
                 <div id ="CheckinTemplates" class="CheckinTemplate" style="display: none">

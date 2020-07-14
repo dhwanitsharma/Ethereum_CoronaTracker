@@ -43,7 +43,6 @@ contract Tracker{
     
     constructor() public{
         owner = msg.sender;
-        checkins[0] = Checkin(12345, "Test1","Test","Green",block.timestamp,"98.6","5");
     }
     
     modifier onlyOwner(){
@@ -74,7 +73,6 @@ contract Tracker{
         uint256 _time = _checkin.timestamp;
         string memory _temp =  _checkin.temp;
         string memory _sector = _checkin.sector;
-        //return(_aadharNo);
         return (_aadharNo,_name,_addr,_StatOfSec,_time,_temp,_sector);
     }
    
