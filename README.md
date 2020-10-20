@@ -1,10 +1,10 @@
 # Ethereum Corona Tracker
 
-This project is Blockchain based project where I have created a Corona Tracker which can trace a person to the location he has visited during the pandemic. The idea aroung the app is that whenever a person visits a particular area/address in a sector, we will log is checkin in the blockchain with sector and the current zone defined by the government for the sector.
+This project is Blockchain based project where I have created a Corona Tracker which can trace a person to the location he has visited during the pandemic. The idea aroung the app is that whenever a person visits a particular area/address in a sector, we will log is checkin in the blockchain with sector and the current zone status defined by the government.
 
-For example, I visit address A which is in the red zone of the city, it will be logged into the blockchain. Now whenever I try to checkin in any other location, they will get a list of places where I have checked-in with the zone status. If I have been to a red zone and checking into a greez zone location, they can take the required precautions prescribed by the government.
+For example, I visit address A which is in the red zone of the city, it will be logged into the blockchain. Now whenever I try to checkin in any other location, they will get a list of the places where I have checked-in with the zone status. If I have been to a red zone and checking into a green zone location, they can take the required precautions prescribed by the government.
 
-I have implemented the Project on the personal Ethereum blockchain using Truffle FrameWork and Ganache. I have create a smart contract on solidity to handle the transactions on blockchain. I have also used Metamask Chrome extention to integrate the account to perform the transactions on the blockchain involving Gas Price. The Gas price will only be required during the check-in process, we can inquire data from the blockchain free of cost. 
+I have implemented the Project on the personal Ethereum blockchain using Truffle FrameWork and Ganache. I have created a smart contract on solidity to handle the transactions on blockchain. I have also used Metamask Chrome extension to integrate the account to perform the transactions on the blockchain involving Gas Price. The Gas price will only be required during the check-in process, we can inquire data from the blockchain free of cost. 
 
 ### Application Flow
 The front page will have to tabs,"Create Check-In" where i can create a new check-in and "Get Check-ins" tab which inquire all the previous checkins
